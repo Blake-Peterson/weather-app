@@ -1,10 +1,12 @@
 export {Weather}
 
 class Weather{
-    constructor(location, temp_celsius,precipitation){
+    constructor(location, temp_celsius,precipitation,description){
         this.location = location;
         this.temp_celsius  = temp_celsius;
         this. precipitation = precipitation;
+        this.description = description;
+
     }
 
     get location(){
@@ -18,7 +20,10 @@ class Weather{
     get temp_celsius(){
         return this.temp_celsius;
     }
-    
+
+    get description(){
+        return this.description;
+    }
 
 }
 
