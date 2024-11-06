@@ -1,3 +1,22 @@
+*,
 body {
-  background-color: rebeccapurple;
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  background-color: lightblue;
+}
+
+#header {
+  height: 20vh;
+  width: inherit;
+}
+
+#content {
+  background-color: skyblue;
+  height: 80vh;
+  width: inherit;
 }

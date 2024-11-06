@@ -19,7 +19,7 @@ async function fetchWeatherData(){
         
         console.log(data);
 
-        return new Weather(weather_location,weather_temp,weather_precipm,description);
+        return new Weather(weather_location,weather_temp,weather_precip,weather_description);
     } catch(error){
         console.log(error);
     }
