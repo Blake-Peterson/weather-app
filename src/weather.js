@@ -9,20 +9,28 @@ class Weather{
 
     }
 
-    get location(){
+    get getLocation(){
         return this.location;
     }
 
-    get temp_fahrenheit(){
+    set setLocation(new_location){
+        return this.location = new_location;
+    }
+
+    get getTemp_fahrenheit(){
         return (this.temp_celsius * 9/5)+32;
     }
 
-    get temp_celsius(){
+    get getTemp_celsius(){
         return this.temp_celsius;
     }
 
-    get description(){
+    get getWeatherDescription(){
         return this.description;
+    }
+
+    set changeWeatherDescription(new_descript){
+        return this.description = new_descript;
     }
 
 }
