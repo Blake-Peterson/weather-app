@@ -22,7 +22,7 @@ async function fetchWeatherData(location_name){
         const weather_precip = data.currentConditions.precip;      
         console.log(data);
 
-        weather_location= new Weather(weather_address,weather_temp,weather_precip,weather_description);
+        return weather_location= new Weather(weather_address,weather_temp,weather_precip,weather_description);
     } catch(error){
         console.log(error);
     }
@@ -31,28 +31,27 @@ async function fetchWeatherData(location_name){
     return weather_location;
 }
 
-function displayWeatherContent(Weather){
+function displayWeatherContent(weather){
     const div = document.createElement("div");
+    div.setAttribute("id","location-weather");
     for(let i=0;i<4;i++){
-        const p = document.createElement("p");
+        const para = document.createElement("p");
         switch (i){
             case 1:
-                p.textContent=  Weather.temp_celsius;
+                para.textContent=  weather.temp_celsius;
                 break;
             case 2:
-                p.textContent = Weather.precip;
+                para.textContent = weather.precipitation;
                 break;
             case 3:
-                p.textContent = Weather.description;
+                para.textContent = weather.description;
                 break;
             default:
-                p.textContent=Weather.location;
+                para.textContent=weather.location;
         }
-        div.appendChild(p);
-    }
-    console.log("return weather div");
-    console.log(div);
-    div;
+        div.appendChild(para);
+    }    
+    return div;
 }
 
 
@@ -61,20 +60,18 @@ function main(){
     input.id="location_input";
     input.type="text";
     input.placeholder="Search Location for Weather";
-
     header.appendChild(input);
 
     const searchInput = document.querySelector("#location_input");
-    searchInput.addEventListener('keypress',function (event){
-        if(event.key ==='Enter'){
-            console.log("enter key pressed");
-            const location_name = searchInput.value;
-            const weather = fetchWeatherData(location_name);
-            console.log(typeof(weather));
+    searchInput.addEventListener('keypress',async function (event){
 
-            //TODO: weather is the correct instance of
-            if (typeof(weather)=="object"){
-                console.log("weather is an instance of Weather Object");
+        if(event.key ==='Enter'){
+            const location_name = searchInput.value;
+            const weather = await fetchWeatherData(location_name);
+            if (weather instanceof Weather){
+                while(content.firstChild){
+                    content.removeChild(content.firstChild);
+                }
                 const weather_div = displayWeatherContent(weather);
                 content.appendChild(weather_div);
             } else{

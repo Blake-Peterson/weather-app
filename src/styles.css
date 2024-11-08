@@ -29,4 +29,14 @@ input {
   background-color: skyblue;
   height: 80vh;
   width: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+#location-weather {
+  background-color: bisque;
+  margin-top: 16px;
+  padding: 1em;
 }
